@@ -9,18 +9,17 @@ export default defineConfig({
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom'],
-          mui: ['@mui/material', '@mui/icons-material'],
           router: ['react-router-dom']
         }
       }
     },
-    // Optimize for SEO
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true
-      }
+    // Optimize for SEO and performance
+    minify: 'esbuild',
+    target: 'es2015',
+    sourcemap: false,
+    // Remove console logs in production
+    esbuild: {
+      drop: ['console', 'debugger']
     }
   },
   server: {
