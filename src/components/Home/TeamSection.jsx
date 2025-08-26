@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../css/TeamSection.css';
+import '../../css/teamSection.css';
 
 const TeamSection = () => {
   return (

@@ -9,7 +9,7 @@ import {
   ListItemText,
 } from "@mui/material";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
-import '../../css/MainService.css'
+import '../../css/mainservice.css'
 
 const MainServices = () => {
   const services = [

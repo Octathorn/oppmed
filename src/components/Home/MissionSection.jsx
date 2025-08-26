@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../css/MissionSection.css';
+import '../../css/missionsection.css';
 
 const MissionSection = () => {
   return (
