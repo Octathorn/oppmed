@@ -6,8 +6,8 @@ const urlsToCache = [
   '/careers',
   '/static/js/bundle.js',
   '/static/css/main.css',
-  '/src/assets/images/logo.png',
-  '/src/assets/images/pexels-los-muertos-crew-8460157-removebg-preview.png'
+  '/logo.png',
+  '/images/pexels-los-muertos-crew-8460157-removebg-preview.png'
 ];
 
 // Install event
@@ -23,6 +23,19 @@ self.addEventListener('install', event => {
 
 // Fetch event
 self.addEventListener('fetch', event => {
+  // Handle navigation requests (HTML pages)
+  if (event.request.mode === 'navigate') {
+    event.respondWith(
+      fetch(event.request)
+        .catch(() => {
+          // If navigation fails, return the index.html
+          return caches.match('/index.html');
+        })
+    );
+    return;
+  }
+
+  // Handle other requests
   event.respondWith(
     caches.match(event.request)
       .then(response => {

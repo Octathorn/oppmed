@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Services from './pages/Services';
 import Contact from './pages/Contact';
 import Careers from './pages/Careers';
+import NotFound from './pages/NotFound';
 import HomeFooter from './components/Home/HomeFooter';
 import TeamSection from './components/Home/TeamSection';
 import SEOHead from './components/SEO/SEOHead';
@@ -47,6 +48,8 @@ function App() {
           <Route path="/services" element={<Services />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/careers" element={<Careers />} />
+          {/* 404 route */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
 
         <TeamSection />
