@@ -33,7 +33,7 @@ const Precise = () => {
           {/* Right Image */}
           <div className="precise-image">
             <img
-              src="src\assets\images\7206784 (1).jpg"
+              src="/images/7206784 (1).jpg"
               alt="Precise Assessment"
             />
           </div>

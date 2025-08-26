@@ -7,7 +7,7 @@ const HeroSection = () => {
       {/* Background SVG */}
       <div className="hero-background">
         <img 
-          src="/src/assets/images/covid19-hero-green-circle-bg-1-2-1.svg" 
+          src="/images/covid19-hero-green-circle-bg-1-2-1.svg" 
           alt="" 
           className="background-svg"
         />
@@ -32,7 +32,7 @@ const HeroSection = () => {
         {/* Right Side - Doctor Image */}
         <div className="hero-image">
           <img 
-            src="/src/assets/images/pexels-los-muertos-crew-8460157-removebg-preview.png" 
+            src="/images/pexels-los-muertos-crew-8460157-removebg-preview.png" 
             alt="Professional doctor in medical scrubs" 
             className="doctor-img"
           />

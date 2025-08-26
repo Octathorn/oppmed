@@ -36,7 +36,7 @@ const Navbar = () => {
             <Box className="logo-section">
               <Box className="logo-icon">
                 <img 
-                  src="/src/assets/logo.png" 
+                  src="/logo.png" 
                   alt="Opportunity Medical Logo" 
                   style={{
                     width: '100%',

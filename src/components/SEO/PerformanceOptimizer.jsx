@@ -5,8 +5,8 @@ const PerformanceOptimizer = () => {
     // Preload critical resources
     const preloadResources = () => {
       const criticalImages = [
-        '/src/assets/images/logo.png',
-        '/src/assets/images/pexels-los-muertos-crew-8460157-removebg-preview.png'
+        '/logo.png',
+        '/images/pexels-los-muertos-crew-8460157-removebg-preview.png'
       ];
 
       criticalImages.forEach(src => {

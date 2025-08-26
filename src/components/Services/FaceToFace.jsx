@@ -39,7 +39,7 @@ const FaceToFace = () => {
           {/* Right Image */}
           <div className="face-image">
             <img
-              src="src\assets\images\5005356.jpg"
+              src="/images/5005356.jpg"
               alt="Face-to-Face Assessments"
             />
           </div>

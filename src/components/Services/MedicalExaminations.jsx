@@ -37,7 +37,7 @@ const MedicalExaminations = () => {
           {/* Right Image */}
           <div className="exam-image">
             <img
-              src="src\assets\images\aaaa-768x525.png"
+              src="/images/aaaa-768x525.png"
               alt="Medical Examinations"
             />
           </div>

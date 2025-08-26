@@ -35,7 +35,7 @@ const Psychological = () => {
           {/* Right Image */}
           <div className="psych-image">
             <img
-              src="src\assets\images\10610.jpg" 
+              src="/images/10610.jpg" 
               alt="Psychological Service"
             />
           </div>

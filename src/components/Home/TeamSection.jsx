@@ -28,7 +28,7 @@ const TeamSection = () => {
             
             <div className="team-image">
               <img 
-                src="/src/assets/images/pexels-los-muertos-crew-8460371-removebg-preview.png" 
+                src="/images/pexels-los-muertos-crew-8460371-removebg-preview.png" 
                 alt="Team of medical professionals" 
                 className="team-photo"
               />

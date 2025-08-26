@@ -8,7 +8,7 @@ const MissionSection = () => {
         {/* Left Side - Medical Team Illustration */}
         <div className="mission-image">
           <img 
-            src="src\assets\images\5188822-removebg-preview.png" 
+            src="/images/5188822-removebg-preview.png" 
             alt="Medical team illustration" 
             className="team-illustration"
           />

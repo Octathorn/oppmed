@@ -25,7 +25,7 @@ const MainServices = () => {
         <div className="services-wrapper">
           {/* Left Image */}
           <div className="services-image">
-            <img src="src/assets/images/4394320.jpg" alt="Our Services" />
+            <img src="/images/4394320.jpg" alt="Our Services" />
           </div>
 
           {/* Right Content */}

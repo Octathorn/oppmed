@@ -32,7 +32,7 @@ const FaceToFaceTwo = () => {
           {/* Right Image */}
           <div className="facetwo-image">
             <img
-              src="src\assets\images\meeting-1.png"
+              src="/images/meeting-1.png"
               alt="Face-to-Face Assessment"
             />
           </div>

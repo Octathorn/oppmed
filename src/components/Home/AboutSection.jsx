@@ -8,7 +8,7 @@ const AboutSection = () => {
         {/* Left Side - Image */}
         <div className="about-image">
           <img 
-            src="src\assets\images\pexels-cottonbro-5989933-768x512.jpg" 
+            src="/images/pexels-cottonbro-5989933-768x512.jpg" 
             alt="Medical consultation with tablet" 
             className="consultation-img"
           />

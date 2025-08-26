@@ -22,7 +22,7 @@ const ServicesSection = () => {
         {/* Skeletal-Muscular Service */}
         <div className="service-card">
           <div className="service-icon">
-            <img src="src\assets\images\fibrotic-skeletal-muscle-cross-section.png" alt="Brain icon" />
+            <img src="/images/fibrotic-skeletal-muscle-cross-section.png" alt="Brain icon" />
           </div>
           <h3 className="service-title">Skeletal-Muscular</h3>
           <p className="service-text">
@@ -36,7 +36,7 @@ const ServicesSection = () => {
         {/* Extra-Musculoskeletal Service */}
         <div className="service-card">
           <div className="service-icon">
-            <img src="src\assets\images\heal.png" alt="Bandage icon" />
+            <img src="/images/heal.png" alt="Bandage icon" />
           </div>
           <h3 className="service-title">Extra-Musculoskeletal</h3>
           <p className="service-text">
@@ -50,7 +50,7 @@ const ServicesSection = () => {
         {/* Psychological Service */}
         <div className="service-card">
           <div className="service-icon">
-            <img src="src\assets\images\brain.png" alt="Psychology icon" />
+            <img src="/images/brain.png" alt="Psychology icon" />
           </div>
           <h3 className="service-title">Psychological</h3>
           <p className="service-text">
@@ -64,7 +64,7 @@ const ServicesSection = () => {
         {/* Face-to-Face Assessments Service */}
         <div className="service-card">
           <div className="service-icon">
-            <img src="src\assets\images\meeting.png" alt="Assessment icon" />
+            <img src="/images/meeting.png" alt="Assessment icon" />
           </div>
           <h3 className="service-title">Face-to-Face Assessments</h3>
           <p className="service-text">

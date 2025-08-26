@@ -36,7 +36,7 @@ const HomeFooter = () => {
           <Grid item xs={12} md={4} textAlign={{ xs: "center", md: "left" }}>
             <Box
               component="img"
-              src="src\assets\logo.png"
+              src="/logo.png"
               alt="Opportunity Medical"
               sx={{ width: 120, mb: 2 }}
             />

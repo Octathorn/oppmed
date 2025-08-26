@@ -36,7 +36,7 @@ const Musculoskeletal = () => {
           {/* Right Image */}
           <div className="musculo-image">
             <img
-              src="src\assets\images\7206784.jpg" 
+              src="/images/7206784.jpg" 
               alt="Extra-Musculoskeletal"
             />
           </div>

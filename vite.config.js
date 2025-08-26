@@ -14,12 +14,12 @@ export default defineConfig({
       }
     },
     // Optimize for SEO and performance
-    minify: 'esbuild',
-    target: 'es2015',
-    sourcemap: false,
-    // Remove console logs in production
-    esbuild: {
-      drop: ['console', 'debugger']
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true
+      }
     }
   },
   server: {

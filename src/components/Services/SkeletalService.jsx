@@ -38,7 +38,7 @@ const SkeletalService = () => {
           {/* Right Image */}
           <div className="skeletal-image">
             <img
-              src="src\assets\images\6906772.jpg" 
+              src="/images/6906772.jpg" 
               alt="Skeletal-Muscular"
             />
           </div>
