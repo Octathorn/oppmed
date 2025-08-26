@@ -1,0 +1,235 @@
+/* Main navbar container */
+.navbar-container {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border: none;
+  margin-top: 20px;
+  padding: 0 !important; /* Remove padding - will inherit from app container */
+}
+
+/* Toolbar styling */
+.navbar-toolbar {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  min-height: 64px !important;
+  padding: 0 !important;
+}
+
+/* Logo section */
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.logo-icon {
+  width: 80px;
+  height: 80px;
+  background: transparent;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.logo-circle {
+  width: 16px;
+  height: 16px;
+  background: white;
+  border-radius: 50%;
+  transform: rotate(45deg);
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.logo-title {
+  font-weight: 600 !important;
+  font-size: 18px !important;
+  color: #212529 !important;
+  letter-spacing: 0.5px !important;
+  line-height: 1 !important;
+}
+
+.logo-subtitle {
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  color: #6c757d !important;
+  letter-spacing: 1px !important;
+  text-transform: uppercase !important;
+  margin-top: 2px !important;
+}
+
+/* Right side container for nav links and emergency button */
+.nav-links {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.nav-button {
+  color: #495057 !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  text-transform: none !important;
+  padding: 8px 16px !important;
+  border-radius: 6px !important;
+  min-width: auto !important;
+}
+
+.nav-button:hover {
+  background-color: #f1f3f4 !important;
+}
+
+/* Emergency button */
+.emergency-button {
+  background-color: transparent !important;
+  color: #4285f4 !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  text-transform: none !important;
+  padding: 7px 17px !important;
+  border-radius: 6px !important;
+  border: 1px solid #4285f4 !important;
+  box-shadow: none !important;
+  margin-left: 24px;
+  transition: all 0.2s ease-in-out !important;
+}
+
+.emergency-button:hover {
+  background-color: #4285f4 !important;
+  color: white !important;
+  border: 1px solid #4285f4 !important;
+  box-shadow: none !important;
+}
+
+/* Mobile menu button (you'll need to add this to JSX) */
+.mobile-menu-button {
+  display: none !important;
+  color: #495057 !important;
+}
+
+/* Responsive breakpoints */
+
+/* Tablet: 768px to 991px */
+@media (min-width: 768px) and (max-width: 991px) {
+  
+  .nav-links {
+    gap: 10px;
+  }
+  
+  .nav-button {
+    font-size: 13px !important;
+    padding: 6px 12px !important;
+  }
+  
+  .emergency-button {
+    font-size: 13px !important;
+    padding: 6px 15px !important;
+    margin-left: 16px;
+  }
+  
+  .logo-title {
+    font-size: 16px !important;
+  }
+}
+
+/* Mobile Large: 576px to 767px */
+@media (min-width: 576px) and (max-width: 767px) {
+  
+  .nav-links {
+    gap: 8px;
+  }
+  
+  .nav-button {
+    font-size: 12px !important;
+    padding: 5px 10px !important;
+  }
+  
+  .emergency-button {
+    font-size: 12px !important;
+    padding: 6px 12px !important;
+    margin-left: 12px;
+  }
+  
+  .logo-title {
+    font-size: 15px !important;
+  }
+  
+  .logo-subtitle {
+    font-size: 10px !important;
+  }
+}
+
+/* Mobile Small: below 576px */
+@media (max-width: 575px) {
+  
+  .navbar-toolbar {
+    min-height: 56px !important;
+  }
+  
+  /* Hide navigation links on mobile */
+  .nav-links .nav-button {
+    display: none !important;
+  }
+  
+  /* Hide emergency button on mobile (will show in drawer) */
+  .emergency-button {
+    display: none !important;
+  }
+  
+  /* Show only mobile menu button */
+  .nav-links {
+    gap: 0;
+    justify-content: flex-end;
+  }
+  
+  .logo-section {
+    gap: 8px;
+  }
+  
+  .logo-icon {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .logo-circle {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .logo-title {
+    font-size: 14px !important;
+  }
+  
+  .logo-subtitle {
+    font-size: 9px !important;
+  }
+  
+  /* Show mobile menu button */
+  .mobile-menu-button {
+    display: block !important;
+    margin-right: 0;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 375px) {
+  
+  .logo-title {
+    font-size: 13px !important;
+  }
+  
+  .emergency-button {
+    font-size: 11px !important;
+    padding: 5px 10px !important;
+  }
+}
