@@ -1,7 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../../css/teamSection.css';
 
 const TeamSection = () => {
+  const navigate = useNavigate();
+  
   return (
     <>
       {/* First Div - White Background with Card */}
@@ -53,7 +56,21 @@ const TeamSection = () => {
             <h5 className="sms-title">SMS Text Message Communications Terms & Conditions</h5>
             
             <p className="terms-text">
-              By providing your phone number and opting in, you consent to receive updates, promotions, marketing, other relevant information and communications via SMS text messages from Opportunity Medical at the phone number provided. You are not required to consent to receive text messages to purchase goods or services. Message frequency varies. Message and data rates may apply. Reply HELP for help or STOP to cancel. See our Privacy Policy and Terms of Service for additional information about our SMS program.
+              By providing your phone number and opting in, you consent to receive updates, promotions, marketing, other relevant information and communications via SMS text messages from Opportunity Medical at the phone number provided. You are not required to consent to receive text messages to purchase goods or services. Message frequency varies. Message and data rates may apply. Reply HELP for help or STOP to cancel. See our{' '}
+              <span 
+                style={{ color: '#0C0FE4', cursor: 'pointer', textDecoration: 'underline' }}
+                onClick={() => navigate('/terms-privacy#privacy')}
+              >
+                Privacy Policy
+              </span>
+              {' '}and{' '}
+              <span 
+                style={{ color: '#0C0FE4', cursor: 'pointer', textDecoration: 'underline' }}
+                onClick={() => navigate('/terms-privacy#terms')}
+              >
+                Terms of Service
+              </span>
+              {' '}for additional information about our SMS program.
             </p>
           </div>
         </div>

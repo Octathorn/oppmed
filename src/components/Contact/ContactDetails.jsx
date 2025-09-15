@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../../css/ContactDetails.css';
 
 const ContactDetails = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -189,12 +191,24 @@ const ContactDetails = () => {
                   messages to purchase goods or services. Message frequency may vary. 
                   Message and data rates may apply. You may opt-out at any time by texting 
                   "STOP" to 424-208-7434 from any SMS message received. For more 
-                  information, text "HELP" or contact us at 424-208-7434. Privacy Policy: Your 
-                  phone number will be stored and used solely for the purpose of sending SMS 
+                  information, text "HELP" or contact us at 424-208-7434. 
+                  <br/><br/>
+                  <span 
+                    style={{ color: '#0C0FE4', cursor: 'pointer', textDecoration: 'underline' }}
+                    onClick={() => navigate('/terms-privacy#privacy')}
+                  >
+                    Privacy Policy
+                  </span>: Your phone number will be stored and used solely for the purpose of sending SMS 
                   communications. We do not share your information with third parties, except 
                   as required by law. Please refer to our full Privacy Policy for more details on 
-                  how we protect your personal data. Terms & Conditions: By providing your 
-                  phone number, you agree to our Terms & Conditions.
+                  how we protect your personal data. 
+                  <br/><br/>
+                  <span 
+                    style={{ color: '#0C0FE4', cursor: 'pointer', textDecoration: 'underline' }}
+                    onClick={() => navigate('/terms-privacy#terms')}
+                  >
+                    Terms & Conditions
+                  </span>: By providing your phone number, you agree to our Terms & Conditions.
                 </div>
               </div>
               
@@ -206,7 +220,21 @@ const ContactDetails = () => {
                     <div className="recaptcha-icon"></div>
                     <div className="recaptcha-brand">
                       <div>reCAPTCHA</div>
-                      <div className="recaptcha-small">Privacy - Terms</div>
+                      <div className="recaptcha-small">
+                        <span 
+                          style={{ color: '#0C0FE4', cursor: 'pointer', textDecoration: 'underline' }}
+                          onClick={() => navigate('/terms-privacy#privacy')}
+                        >
+                          Privacy
+                        </span>
+                        {' - '}
+                        <span 
+                          style={{ color: '#0C0FE4', cursor: 'pointer', textDecoration: 'underline' }}
+                          onClick={() => navigate('/terms-privacy#terms')}
+                        >
+                          Terms
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>

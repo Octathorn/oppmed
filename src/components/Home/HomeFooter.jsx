@@ -8,6 +8,7 @@ import {
   IconButton,
   Divider,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
@@ -17,6 +18,8 @@ import PhoneIcon from "@mui/icons-material/Phone";
 import EmailIcon from "@mui/icons-material/Email";
 
 const HomeFooter = () => {
+  const navigate = useNavigate();
+
   return (
     <Box
       sx={{
@@ -70,14 +73,41 @@ const HomeFooter = () => {
             <Divider sx={{ bgcolor: "white", opacity: 0.5, mb: 2 }} />
 
             <Box display="flex" flexDirection="column" gap={1}>
-              <Link href="#" color="inherit" underline="hover">
+              <Link 
+                component="button" 
+                onClick={() => navigate('/')} 
+                color="inherit" 
+                underline="hover"
+                sx={{ textAlign: 'left', cursor: 'pointer' }}
+              >
                 Home
               </Link>
-              <Link href="#" color="inherit" underline="hover">
+              <Link 
+                component="button" 
+                onClick={() => navigate('/services')} 
+                color="inherit" 
+                underline="hover"
+                sx={{ textAlign: 'left', cursor: 'pointer' }}
+              >
                 Services
               </Link>
-              <Link href="#" color="inherit" underline="hover">
+              <Link 
+                component="button" 
+                onClick={() => navigate('/contact')} 
+                color="inherit" 
+                underline="hover"
+                sx={{ textAlign: 'left', cursor: 'pointer' }}
+              >
                 Contact Us
+              </Link>
+              <Link 
+                component="button" 
+                onClick={() => navigate('/careers')} 
+                color="inherit" 
+                underline="hover"
+                sx={{ textAlign: 'left', cursor: 'pointer' }}
+              >
+                Careers
               </Link>
             </Box>
           </Grid>
@@ -108,6 +138,26 @@ const HomeFooter = () => {
 
         {/* Bottom bar */}
         <Box textAlign="center" mt={4}>
+          <Box display="flex" justifyContent="center" gap={3} mb={2} flexWrap="wrap">
+            <Link 
+              component="button" 
+              onClick={() => navigate('/terms-privacy#terms')} 
+              color="inherit" 
+              underline="hover"
+              sx={{ cursor: 'pointer', fontSize: '0.875rem', color: '#0C0FE4' }}
+            >
+              Terms of Use
+            </Link>
+            <Link 
+              component="button" 
+              onClick={() => navigate('/terms-privacy#privacy')} 
+              color="inherit" 
+              underline="hover"
+              sx={{ cursor: 'pointer', fontSize: '0.875rem', color: '#0C0FE4' }}
+            >
+              Privacy Policy
+            </Link>
+          </Box>
           <Typography variant="body2">
             Copyright © 2025 Opportunity Medical
           </Typography>
