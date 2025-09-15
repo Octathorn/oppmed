@@ -9,8 +9,8 @@ const TermsPrivacy = () => {
   
   // SEO configuration for this page
   useSEO({
-    title: 'Terms of Use & Privacy Policy | Platinum Medical Evaluations',
-    description: 'Read our terms of use and privacy policy for Platinum Medical Evaluations. Learn about our data collection practices and user responsibilities.',
+    title: 'Terms of Use & Privacy Policy | Opportunity Medical',
+    description: 'Read our terms of use and privacy policy for Opportunity Medical. Learn about our data collection practices and user responsibilities.',
     keywords: 'terms of use, privacy policy, medical evaluations, data protection, user agreement',
     canonical: '/terms-privacy'
   });
@@ -77,7 +77,7 @@ const TermsPrivacy = () => {
           </Typography>
           
           <Typography variant="body1" paragraph>
-            Platinum Medical Evaluations ("we," "us," or "our") provides this website ("Site") to you conditioned on
+            Opportunity Medical ("we," "us," or "our") provides this website ("Site") to you conditioned on
             your acceptance without modification of the terms, conditions, and notices contained
             herein. Your use of this Site constitutes your agreement to all such terms, conditions,
             and notices.
@@ -258,8 +258,8 @@ const TermsPrivacy = () => {
             COPYRIGHT AND TRADEMARK NOTICES
           </Typography>
           <Typography variant="body1" paragraph>
-            All contents of this website are Copyright © 2025 Platinum Medical Evaluations. All Rights Reserved.
-            All logos are trademarks and service marks of Platinum Medical Evaluations. All other trademarks,
+            All contents of this website are Copyright © 2025 Opportunity Medical. All Rights Reserved.
+            All logos are trademarks and service marks of Opportunity Medical. All other trademarks,
             service marks and logos used in this Site are the property of their respective owners.
           </Typography>
 
