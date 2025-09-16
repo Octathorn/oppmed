@@ -131,7 +131,7 @@ const HomeFooter = () => {
             </Box>
             <Box display="flex" alignItems="center" gap={1}>
               <EmailIcon fontSize="small" />
-              <Typography variant="body2">office@oppmed.local</Typography>
+              <Typography variant="body2">info@oppmed.com</Typography>
             </Box>
           </Grid>
         </Grid>
