@@ -20,10 +20,8 @@ const ContactSection = () => {
               Opportunity Medical has steadily expanded, continuously welcoming 
               new physicians, dedicated staff members, and additional offices to 
               enhance our ability to serve Veterans with the utmost dedication. This 
-              growth allows us to provide seamless services, ensuring that Veterans 
-              can easily access resources, much like the straightforward 
-              platincasinoplayde that offers various options for entertainment and 
-              engagement.
+              growth allows us to provide seamless services, ensuring that Veterans
+              can easily access resources.
             </p>
           </div>
           
@@ -59,7 +57,7 @@ const ContactSection = () => {
                 </div>
               </div>
               <div className="contact-info">
-                office@oppmed.local
+                office@oppmed.com
               </div>
             </div>
             
@@ -76,7 +74,7 @@ const ContactSection = () => {
                 </div>
               </div>
               <div className="contact-address-info">
-                <div className="contact-info">1494 S. Robertson, Suite #203</div>
+                <div className="contact-info">1494 S. Robertson, Suite #100</div>
                 <div className="contact-info">Los Angeles CA 90035</div>
               </div>
             </div>

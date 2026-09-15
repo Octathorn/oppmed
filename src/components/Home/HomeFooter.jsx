@@ -122,7 +122,7 @@ const HomeFooter = () => {
             <Box display="flex" alignItems="center" mb={1} gap={1}>
               <LocationOnIcon fontSize="small" />
               <Typography variant="body2">
-                1494 S. Robertson, Suite #203 Los Angeles CA 90035
+                1494 S. Robertson, Suite #100 Los Angeles CA 90035
               </Typography>
             </Box>
             <Box display="flex" alignItems="center" mb={1} gap={1}>

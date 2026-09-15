@@ -26,7 +26,7 @@ const CareerInfo = () => {
             
             <div className="contact-details">
               <div className="address-info">
-                <p className="address-line">1494 S. Robertson Blvd, Suite 203</p>
+                <p className="address-line">1494 S. Robertson Blvd, Suite 100</p>
                 <p className="address-line">Los Angeles, CA 90035</p>
                 <p className="phone-line">T <a href="tel:424-208-7434" className="contact-link">(424) 208-7434</a></p>
                 <p className="fax-line">F (424) 208-7435</p>
@@ -34,7 +34,7 @@ const CareerInfo = () => {
               
               <div className="email-info">
                 <p className="email-line">
-                  Email – <a href="mailto:office@oppmed.local" className="contact-link">office@oppmed.local</a>
+                  Email – <a href="mailto:office@oppmed.com" className="contact-link">office@oppmed.com</a>
                 </p>
               </div>
             </div>
