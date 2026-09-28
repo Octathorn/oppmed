@@ -1,19 +1,22 @@
 import React from "react";
 import { Box, Container, Typography, Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import "../../css/Precise.css";
 
 const Precise = () => {
+  const navigate = useNavigate();
+
   return (
     <Box className="precise-section">
       <Container maxWidth="lg">
         <div className="precise-wrapper">
           {/* Left Content */}
           <div className="precise-content">
-            <Typography variant="h4" className="precise-number">
+            <Typography variant="h4" component="div" className="precise-number">
               08.
             </Typography>
 
-            <Typography variant="h4" className="precise-title">
+            <Typography variant="h4" component="h2" className="precise-title">
               Precise
             </Typography>
 
@@ -25,7 +28,7 @@ const Precise = () => {
               related to disability benefits.
             </Typography>
 
-            <Button variant="outlined" className="precise-button">
+            <Button variant="outlined" className="precise-button" onClick={() => navigate('/contact')}>
               Report a Case
             </Button>
           </div>

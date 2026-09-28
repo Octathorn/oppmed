@@ -1,19 +1,22 @@
 import React from "react";
 import { Box, Container, Typography, Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import "../../css/FaceToFace.css";
 
 const FaceToFace = () => {
+  const navigate = useNavigate();
+
   return (
     <Box className="face-section">
       <Container maxWidth="lg">
         <div className="face-wrapper">
           {/* Left Content */}
           <div className="face-content">
-            <Typography variant="h4" className="face-number">
+            <Typography variant="h4" component="div" className="face-number">
               04.
             </Typography>
 
-            <Typography variant="h4" className="face-title">
+            <Typography variant="h4" component="h2" className="face-title">
               Face-to-Face Assessments
             </Typography>
 
@@ -31,7 +34,7 @@ const FaceToFace = () => {
               for optimal user satisfaction.
             </Typography>
 
-            <Button variant="outlined" className="face-button">
+            <Button variant="outlined" className="face-button" onClick={() => navigate('/contact')}>
               Report a Case
             </Button>
           </div>

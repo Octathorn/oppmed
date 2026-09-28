@@ -1,19 +1,22 @@
 import React from "react";
 import { Box, Container, Typography, Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import "../../css/MedicalExaminations.css";
 
 const MedicalExaminations = () => {
+  const navigate = useNavigate();
+
   return (
     <Box className="exam-section">
       <Container maxWidth="lg">
         <div className="exam-wrapper">
           {/* Left Content */}
           <div className="exam-content">
-            <Typography variant="h4" className="exam-number">
+            <Typography variant="h4" component="div" className="exam-number">
               05.
             </Typography>
 
-            <Typography variant="h4" className="exam-title">
+            <Typography variant="h4" component="h2" className="exam-title">
               Medical Examinations
             </Typography>
 
@@ -29,7 +32,7 @@ const MedicalExaminations = () => {
               operations.
             </Typography>
 
-            <Button variant="outlined" className="exam-button">
+            <Button variant="outlined" className="exam-button" onClick={() => navigate('/contact')}>
               Report a Case
             </Button>
           </div>

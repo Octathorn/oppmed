@@ -1,19 +1,22 @@
 import React from "react";
 import { Box, Container, Typography, Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import "../../css/Musculoskeletal.css";
 
 const Musculoskeletal = () => {
+  const navigate = useNavigate();
+
   return (
     <Box className="musculo-section">
       <Container maxWidth="lg">
         <div className="musculo-wrapper">
           {/* Left Content */}
           <div className="musculo-content">
-            <Typography variant="h4" className="musculo-number">
+            <Typography variant="h4" component="div" className="musculo-number">
               02.
             </Typography>
 
-            <Typography variant="h4" className="musculo-title">
+            <Typography variant="h4" component="h2" className="musculo-title">
               Extra-Musculoskeletal
             </Typography>
 
@@ -28,7 +31,7 @@ const Musculoskeletal = () => {
               erectile dysfunction (E.D.).
             </Typography>
 
-            <Button variant="outlined" className="musculo-button">
+            <Button variant="outlined" className="musculo-button" onClick={() => navigate('/contact')}>
               Report a Case
             </Button>
           </div>

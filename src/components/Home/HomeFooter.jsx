@@ -10,9 +10,6 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import FacebookIcon from "@mui/icons-material/Facebook";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import YouTubeIcon from "@mui/icons-material/YouTube";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import PhoneIcon from "@mui/icons-material/Phone";
 import EmailIcon from "@mui/icons-material/Email";
@@ -22,9 +19,10 @@ const HomeFooter = () => {
 
   return (
     <Box
+      component="footer"
       sx={{
         width: "100vw",
-        bgcolor: "#4285f4",
+        bgcolor: "#1a56db",
         color: "white",
         pt: 6,
         pb: 2,
@@ -50,17 +48,15 @@ const HomeFooter = () => {
             </Typography>
 
             <Box>
-              <IconButton color="inherit">
+              <IconButton
+                color="inherit"
+                component="a"
+                href="https://www.facebook.com/opportunitymedical"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Opportunity Medical on Facebook (opens in a new tab)"
+              >
                 <FacebookIcon />
-              </IconButton>
-              <IconButton color="inherit">
-                <TwitterIcon />
-              </IconButton>
-              <IconButton color="inherit">
-                <InstagramIcon />
-              </IconButton>
-              <IconButton color="inherit">
-                <YouTubeIcon />
               </IconButton>
             </Box>
           </Grid>
@@ -127,11 +123,25 @@ const HomeFooter = () => {
             </Box>
             <Box display="flex" alignItems="center" mb={1} gap={1}>
               <PhoneIcon fontSize="small" />
-              <Typography variant="body2">424-208-7434</Typography>
+              <Link
+                href="tel:424-208-7434"
+                color="inherit"
+                underline="hover"
+                variant="body2"
+              >
+                424-208-7434
+              </Link>
             </Box>
             <Box display="flex" alignItems="center" gap={1}>
               <EmailIcon fontSize="small" />
-              <Typography variant="body2">info@oppmed.com</Typography>
+              <Link
+                href="mailto:info@oppmed.com"
+                color="inherit"
+                underline="hover"
+                variant="body2"
+              >
+                info@oppmed.com
+              </Link>
             </Box>
           </Grid>
         </Grid>
@@ -139,21 +149,21 @@ const HomeFooter = () => {
         {/* Bottom bar */}
         <Box textAlign="center" mt={4}>
           <Box display="flex" justifyContent="center" gap={3} mb={2} flexWrap="wrap">
-            <Link 
-              component="button" 
-              onClick={() => navigate('/terms-privacy#terms')} 
-              color="inherit" 
-              underline="hover"
-              sx={{ cursor: 'pointer', fontSize: '0.875rem', color: '#0C0FE4' }}
+            <Link
+              component="button"
+              onClick={() => navigate('/terms-privacy#terms')}
+              color="inherit"
+              underline="always"
+              sx={{ cursor: 'pointer', fontSize: '0.875rem', color: '#ffffff' }}
             >
               Terms of Use
             </Link>
-            <Link 
-              component="button" 
-              onClick={() => navigate('/terms-privacy#privacy')} 
-              color="inherit" 
-              underline="hover"
-              sx={{ cursor: 'pointer', fontSize: '0.875rem', color: '#0C0FE4' }}
+            <Link
+              component="button"
+              onClick={() => navigate('/terms-privacy#privacy')}
+              color="inherit"
+              underline="always"
+              sx={{ cursor: 'pointer', fontSize: '0.875rem', color: '#ffffff' }}
             >
               Privacy Policy
             </Link>

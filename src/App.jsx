@@ -42,17 +42,21 @@ function App() {
         <PerformanceOptimizer />
         <RouteChangeTracker />
         
+        <a href="#main-content" className="skip-link">Skip to main content</a>
+
         <Navbar />
 
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/careers" element={<Careers />} />
-          <Route path="/terms-privacy" element={<TermsPrivacy />} />
-          {/* 404 route */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <main id="main-content" tabIndex={-1}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/careers" element={<Careers />} />
+            <Route path="/terms-privacy" element={<TermsPrivacy />} />
+            {/* 404 route */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </main>
 
         <TeamSection />
         <HomeFooter />

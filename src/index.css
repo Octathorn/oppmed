@@ -1,0 +1,52 @@
+/* ==========================================================================
+   Global accessibility utilities
+   ========================================================================== */
+
+/* Screen-reader-only content: visually hidden but available to assistive tech */
+.sr-only {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* "Skip to main content" link — hidden until it receives keyboard focus */
+.skip-link {
+  position: absolute;
+  left: 8px;
+  top: -60px;
+  z-index: 10000;
+  padding: 12px 20px;
+  background: #ffffff;
+  color: #1a3fb0;
+  font-weight: 600;
+  font-size: 15px;
+  border: 2px solid #1a3fb0;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: top 0.15s ease-in-out;
+}
+
+.skip-link:focus {
+  top: 8px;
+}
+
+/* Visible keyboard focus indicator for every interactive element.
+   Uses :focus-visible so it appears for keyboard users without adding a
+   ring on mouse clicks. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid #1a56db;
+  outline-offset: 2px;
+  border-radius: 2px;
+}

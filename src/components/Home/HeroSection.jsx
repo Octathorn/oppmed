@@ -1,7 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../../css/herosection.css'
 
 const HeroSection = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="hero-container">
       {/* Background SVG */}
@@ -24,7 +27,11 @@ const HeroSection = () => {
             At Opportunity Medical, we empower Veterans through personalized care. Our network of dedicated, board-certified physicians conducts face-to-face C&P exams.
           </p>
           
-          <button className="hero-button">
+          <button
+            className="hero-button"
+            onClick={() => navigate('/services')}
+            aria-label="Learn more about our C&P exam services"
+          >
             Learn More
           </button>
         </div>

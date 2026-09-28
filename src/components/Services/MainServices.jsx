@@ -32,13 +32,14 @@ const MainServices = () => {
           <div className="services-content">
             <Typography
               variant="subtitle2"
+              component="p"
               className="services-subtitle"
               gutterBottom
             >
               OPPORTUNITY MEDICAL SERVICES
             </Typography>
 
-            <Typography variant="h3" className="services-title">
+            <Typography variant="h3" component="h1" className="services-title">
               Our Services
             </Typography>
 

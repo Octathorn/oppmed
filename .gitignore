@@ -12,6 +12,14 @@ dist
 dist-ssr
 *.local
 
+# Environment variables (keep real keys out of git; commit .env.example instead)
+.env
+.env.*
+!.env.example
+
+# Local tooling
+.claude/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

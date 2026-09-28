@@ -5,6 +5,8 @@ const CareerInfo = () => {
     <section className="career-info-section">
       <div className="career-info-container">
         <div className="career-info-content">
+          <h1 className="career-main-heading">Join Our Provider Network</h1>
+
           <p className="recruitment-text">
             Providers are being recruited in all states.
           </p>
@@ -20,9 +22,9 @@ const CareerInfo = () => {
           </p>
           
           <div className="contact-info-section">
-            <h3 className="contact-info-heading">
+            <h2 className="contact-info-heading">
               Contact Information
-            </h3>
+            </h2>
             
             <div className="contact-details">
               <div className="address-info">

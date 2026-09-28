@@ -16,7 +16,7 @@
 }
 
 .musculo-number {
-  color: #4285f4;
+  color: #1a56db;
   font-weight: 700;
   margin-bottom: 12px;
 }
@@ -33,8 +33,8 @@
 }
 
 .musculo-button {
-  border: 1px solid #4285f4 !important;
-  color: #4285f4 !important;
+  border: 1px solid #1a56db !important;
+  color: #1a56db !important;
   text-transform: none !important;
   font-weight: 500 !important;
   padding: 8px 20px !important;

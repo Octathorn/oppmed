@@ -1,19 +1,22 @@
 import React from "react";
 import { Box, Container, Typography, Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import "../../css/SkeletalService.css";
 
 const SkeletalService = () => {
+  const navigate = useNavigate();
+
   return (
     <Box className="skeletal-section">
       <Container maxWidth="lg">
         <div className="skeletal-wrapper">
           {/* Left Content */}
           <div className="skeletal-content">
-            <Typography variant="h4" className="skeletal-number">
+            <Typography variant="h4" component="div" className="skeletal-number">
               01.
             </Typography>
 
-            <Typography variant="h4" className="skeletal-title">
+            <Typography variant="h4" component="h2" className="skeletal-title">
               Skeletal-Muscular
             </Typography>
 
@@ -30,7 +33,7 @@ const SkeletalService = () => {
               operations.
             </Typography>
 
-            <Button variant="outlined" className="skeletal-button">
+            <Button variant="outlined" className="skeletal-button" onClick={() => navigate('/contact')}>
               Report a Case
             </Button>
           </div>

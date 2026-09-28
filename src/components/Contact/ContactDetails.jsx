@@ -2,6 +2,14 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../../css/ContactDetails.css';
 
+// Web3Forms handles form delivery + spam verification server-side, so no backend
+// of our own is required. The access key is designed to be public (safe in the
+// frontend bundle). Get a free key (email only, no account/password) at
+// https://web3forms.com and set it as VITE_WEB3FORMS_ACCESS_KEY in your local
+// .env file and in the Vercel project's Environment Variables.
+const WEB3FORMS_ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || '';
+const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
+
 const ContactDetails = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -14,6 +22,9 @@ const ContactDetails = () => {
   });
 
   const [expandedFaq, setExpandedFaq] = useState(0);
+  const [errors, setErrors] = useState({});
+  const [submitStatus, setSubmitStatus] = useState('idle'); // idle | submitting | success | error
+  const [submitMessage, setSubmitMessage] = useState('');
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -21,12 +32,96 @@ const ContactDetails = () => {
       ...prev,
       [name]: type === 'checkbox' ? checked : value
     }));
+    // Clear the error for a field as soon as the user edits it
+    setErrors(prev => {
+      if (!prev[name]) return prev;
+      const next = { ...prev };
+      delete next[name];
+      return next;
+    });
   };
 
-  const handleSubmit = (e) => {
+  const validate = () => {
+    const nextErrors = {};
+    if (!formData.firstName.trim()) {
+      nextErrors.firstName = 'Please enter your first name.';
+    }
+    if (!formData.lastName.trim()) {
+      nextErrors.lastName = 'Please enter your last name.';
+    }
+    if (!formData.email.trim()) {
+      nextErrors.email = 'Please enter your email address.';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      nextErrors.email = 'Please enter a valid email address (e.g. name@example.com).';
+    }
+    return nextErrors;
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission
-    console.log('Form submitted:', formData);
+    const form = e.currentTarget;
+    const nextErrors = validate();
+    setErrors(nextErrors);
+
+    if (Object.keys(nextErrors).length > 0) {
+      // Move focus to the first field with an error so screen-reader and
+      // keyboard users are taken straight to what needs fixing.
+      const firstErrorField = document.getElementById(Object.keys(nextErrors)[0]);
+      if (firstErrorField) firstErrorField.focus();
+      return;
+    }
+
+    // Honeypot: if this hidden field is filled, it's almost certainly a bot.
+    if (form.botcheck && form.botcheck.checked) {
+      return;
+    }
+
+    if (!WEB3FORMS_ACCESS_KEY) {
+      setSubmitStatus('error');
+      setSubmitMessage(
+        'The contact form is not fully configured yet. Please call us at 424-208-7434 or email office@oppmed.com.'
+      );
+      return;
+    }
+
+    setSubmitStatus('submitting');
+    setSubmitMessage('');
+
+    try {
+      const response = await fetch(WEB3FORMS_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject: 'New contact form submission — Opportunity Medical',
+          from_name: 'Opportunity Medical Website',
+          name: `${formData.firstName} ${formData.lastName}`.trim(),
+          email: formData.email,
+          phone: formData.phone,
+          message: formData.message,
+          sms_consent: formData.smsConsent ? 'Yes' : 'No',
+          botcheck: '',
+        }),
+      });
+      const data = await response.json();
+
+      if (data.success) {
+        setSubmitStatus('success');
+        setSubmitMessage('Thank you — your message has been sent. Our team will be in touch soon.');
+        setFormData({ firstName: '', lastName: '', email: '', phone: '', message: '', smsConsent: false });
+      } else {
+        setSubmitStatus('error');
+        setSubmitMessage(
+          (data && data.message) ||
+            'Something went wrong sending your message. Please try again, or call us at 424-208-7434.'
+        );
+      }
+    } catch (err) {
+      setSubmitStatus('error');
+      setSubmitMessage(
+        'We could not reach the server. Please check your connection and try again, or call us at 424-208-7434.'
+      );
+    }
   };
 
   const toggleFaq = (index) => {
@@ -74,18 +169,26 @@ const ContactDetails = () => {
               
               {faqData.map((faq, index) => (
                 <div key={index} className="faq-item">
-                  <button 
+                  <button
                     className={`faq-question ${expandedFaq === index ? 'expanded' : ''}`}
                     onClick={() => toggleFaq(index)}
+                    aria-expanded={expandedFaq === index}
+                    aria-controls={`faq-answer-${index}`}
+                    id={`faq-question-${index}`}
                   >
-                    <span className="faq-icon">
+                    <span className="faq-icon" aria-hidden="true">
                       {expandedFaq === index ? '−' : '+'}
                     </span>
                     {faq.question}
                   </button>
-                  
+
                   {expandedFaq === index && (
-                    <div className="faq-answer">
+                    <div
+                      className="faq-answer"
+                      id={`faq-answer-${index}`}
+                      role="region"
+                      aria-labelledby={`faq-question-${index}`}
+                    >
                       {faq.answer}
                     </div>
                   )}
@@ -96,55 +199,95 @@ const ContactDetails = () => {
           
           {/* Right Column - Form */}
           <div className="contact-details-right">
-            <form className="contact-form" onSubmit={handleSubmit}>
+            <form className="contact-form" onSubmit={handleSubmit} noValidate>
+              {/* Honeypot: hidden from real users and assistive tech; only bots fill it */}
+              <input
+                type="checkbox"
+                name="botcheck"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                style={{ display: 'none' }}
+              />
+
               <div className="form-row">
                 <div className="form-group">
-                  <label className="form-label">
-                    Name <span className="required">*</span>
+                  <label htmlFor="firstName" className="form-label">
+                    First name <span className="required" aria-hidden="true">*</span>
+                    <span className="required-text">Required</span>
                   </label>
                   <input
                     type="text"
+                    id="firstName"
                     name="firstName"
                     placeholder="First"
                     className="form-input"
                     value={formData.firstName}
                     onChange={handleInputChange}
-                    required
+                    aria-required="true"
+                    aria-invalid={errors.firstName ? 'true' : 'false'}
+                    aria-describedby={errors.firstName ? 'firstName-error' : undefined}
                   />
+                  {errors.firstName && (
+                    <span id="firstName-error" className="form-error" role="alert">
+                      {errors.firstName}
+                    </span>
+                  )}
                 </div>
-                
+
                 <div className="form-group">
-                  <label className="form-label-hidden">Last Name</label>
+                  <label htmlFor="lastName" className="form-label">
+                    Last name <span className="required" aria-hidden="true">*</span>
+                    <span className="required-text">Required</span>
+                  </label>
                   <input
                     type="text"
+                    id="lastName"
                     name="lastName"
                     placeholder="Last"
                     className="form-input"
                     value={formData.lastName}
                     onChange={handleInputChange}
-                    required
+                    aria-required="true"
+                    aria-invalid={errors.lastName ? 'true' : 'false'}
+                    aria-describedby={errors.lastName ? 'lastName-error' : undefined}
                   />
+                  {errors.lastName && (
+                    <span id="lastName-error" className="form-error" role="alert">
+                      {errors.lastName}
+                    </span>
+                  )}
                 </div>
               </div>
-              
+
               <div className="form-group">
-                <label className="form-label">
-                  Email <span className="required">*</span>
+                <label htmlFor="email" className="form-label">
+                  Email <span className="required" aria-hidden="true">*</span>
+                  <span className="required-text">Required</span>
                 </label>
                 <input
                   type="email"
+                  id="email"
                   name="email"
                   className="form-input"
                   value={formData.email}
                   onChange={handleInputChange}
-                  required
+                  aria-required="true"
+                  aria-invalid={errors.email ? 'true' : 'false'}
+                  aria-describedby={errors.email ? 'email-error' : undefined}
                 />
+                {errors.email && (
+                  <span id="email-error" className="form-error" role="alert">
+                    {errors.email}
+                  </span>
+                )}
               </div>
-              
+
               <div className="form-group">
-                <label className="form-label">Phone Number</label>
+                <label htmlFor="phone" className="form-label">Phone Number</label>
                 <input
                   type="tel"
+                  id="phone"
                   name="phone"
                   placeholder="424-208-7434"
                   className="form-input"
@@ -152,10 +295,11 @@ const ContactDetails = () => {
                   onChange={handleInputChange}
                 />
               </div>
-              
+
               <div className="form-group">
-                <label className="form-label">Comment or Message</label>
+                <label htmlFor="message" className="form-label">Comment or Message</label>
                 <textarea
+                  id="message"
                   name="message"
                   className="form-textarea"
                   rows="4"
@@ -193,56 +337,45 @@ const ContactDetails = () => {
                   "STOP" to 424-208-7434 from any SMS message received. For more 
                   information, text "HELP" or contact us at 424-208-7434. 
                   <br/><br/>
-                  <span 
-                    style={{ color: '#0C0FE4', cursor: 'pointer', textDecoration: 'underline' }}
+                  <button
+                    type="button"
+                    className="link-button"
                     onClick={() => navigate('/terms-privacy#privacy')}
                   >
                     Privacy Policy
-                  </span>: Your phone number will be stored and used solely for the purpose of sending SMS 
+                  </button>: Your phone number will be stored and used solely for the purpose of sending SMS
                   communications. We do not share your information with third parties, except 
                   as required by law. Please refer to our full Privacy Policy for more details on 
                   how we protect your personal data. 
                   <br/><br/>
-                  <span 
-                    style={{ color: '#0C0FE4', cursor: 'pointer', textDecoration: 'underline' }}
+                  <button
+                    type="button"
+                    className="link-button"
                     onClick={() => navigate('/terms-privacy#terms')}
                   >
                     Terms & Conditions
-                  </span>: By providing your phone number, you agree to our Terms & Conditions.
+                  </button>: By providing your phone number, you agree to our Terms & Conditions.
                 </div>
               </div>
               
-              <div className="recaptcha-section">
-                <div className="recaptcha-placeholder">
-                  <div className="recaptcha-checkbox"></div>
-                  <span className="recaptcha-text">I'm not a robot</span>
-                  <div className="recaptcha-logo">
-                    <div className="recaptcha-icon"></div>
-                    <div className="recaptcha-brand">
-                      <div>reCAPTCHA</div>
-                      <div className="recaptcha-small">
-                        <span 
-                          style={{ color: '#0C0FE4', cursor: 'pointer', textDecoration: 'underline' }}
-                          onClick={() => navigate('/terms-privacy#privacy')}
-                        >
-                          Privacy
-                        </span>
-                        {' - '}
-                        <span 
-                          style={{ color: '#0C0FE4', cursor: 'pointer', textDecoration: 'underline' }}
-                          onClick={() => navigate('/terms-privacy#terms')}
-                        >
-                          Terms
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <button type="submit" className="submit-button">
-                Submit
+              <button
+                type="submit"
+                className="submit-button"
+                disabled={submitStatus === 'submitting'}
+              >
+                {submitStatus === 'submitting' ? 'Sending…' : 'Submit'}
               </button>
+
+              {/* Submission result — announced to screen readers via aria-live */}
+              {(submitStatus === 'success' || submitStatus === 'error') && (
+                <p
+                  className={`form-status form-status--${submitStatus}`}
+                  role={submitStatus === 'error' ? 'alert' : 'status'}
+                  aria-live="polite"
+                >
+                  {submitMessage}
+                </p>
+              )}
             </form>
           </div>
         </div>

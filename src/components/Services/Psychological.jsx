@@ -1,19 +1,22 @@
 import React from "react";
 import { Box, Container, Typography, Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import "../../css/Psychological.css";
 
 const Psychological = () => {
+  const navigate = useNavigate();
+
   return (
     <Box className="psych-section">
       <Container maxWidth="lg">
         <div className="psych-wrapper">
           {/* Left Content */}
           <div className="psych-content">
-            <Typography variant="h4" className="psych-number">
+            <Typography variant="h4" component="div" className="psych-number">
               03.
             </Typography>
 
-            <Typography variant="h4" className="psych-title">
+            <Typography variant="h4" component="h2" className="psych-title">
               Psychological
             </Typography>
 
@@ -27,7 +30,7 @@ const Psychological = () => {
               comprehensive support to Veterans in need.
             </Typography>
 
-            <Button variant="outlined" className="psych-button">
+            <Button variant="outlined" className="psych-button" onClick={() => navigate('/contact')}>
               Report a Case
             </Button>
           </div>
