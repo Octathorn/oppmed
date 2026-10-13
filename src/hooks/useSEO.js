@@ -1,5 +1,6 @@
 import { useEffect, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
+import { GA_MEASUREMENT_ID } from '../config/analytics';
 
 export const useSEO = (seoConfig) => {
   const location = useLocation();
@@ -108,8 +109,8 @@ export const useSEO = (seoConfig) => {
 
   // Track page view for analytics
   const trackPageView = useCallback(() => {
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('config', 'GA_MEASUREMENT_ID', {
+    if (GA_MEASUREMENT_ID && typeof window !== 'undefined' && window.gtag) {
+      window.gtag('config', GA_MEASUREMENT_ID, {
         page_title: title,
         page_location: `https://oppmed.com${location.pathname}`,
         page_path: location.pathname

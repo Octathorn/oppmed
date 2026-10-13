@@ -1,44 +1,19 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
+import { GA_MEASUREMENT_ID } from '../../config/analytics';
 
-const GoogleAnalytics = ({ measurementId = 'GA_MEASUREMENT_ID' }) => {
+// Loads and initializes Google Analytics 4 once, only when a Measurement ID
+// is configured via VITE_GA_MEASUREMENT_ID. Route-change tracking is handled
+// by RouteChangeTracker in App.jsx.
+const GoogleAnalytics = ({ measurementId = GA_MEASUREMENT_ID }) => {
   useEffect(() => {
-    // Initialize Google Analytics
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('config', measurementId, {
-        page_title: document.title,
-        page_location: window.location.href,
-      });
-    }
-  }, [measurementId]);
+    // No ID configured → don't load analytics at all.
+    if (!measurementId || typeof window === 'undefined') return undefined;
 
-  const handlePageView = (url) => {
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('config', measurementId, {
-        page_path: url,
-      });
-    }
-  };
+    // Avoid double-initialization (e.g. React strict-mode remount).
+    if (window.gtag) return undefined;
 
-  // Track route changes
-  useEffect(() => {
-    const handleRouteChange = () => {
-      handlePageView(window.location.pathname);
-    };
-
-    window.addEventListener('popstate', handleRouteChange);
-    return () => window.removeEventListener('popstate', handleRouteChange);
-  }, [measurementId]);
-
-  useEffect(() => {
-    // Add Google Analytics script
-    const script = document.createElement('script');
-    script.async = true;
-    script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
-    document.head.appendChild(script);
-
-    // Initialize gtag
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { window.dataLayer.push(arguments); }
     window.gtag = gtag;
     gtag('js', new Date());
     gtag('config', measurementId, {
@@ -46,7 +21,11 @@ const GoogleAnalytics = ({ measurementId = 'GA_MEASUREMENT_ID' }) => {
       page_location: window.location.href,
     });
 
-    // Cleanup
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
+    document.head.appendChild(script);
+
     return () => {
       if (script.parentNode) {
         script.parentNode.removeChild(script);

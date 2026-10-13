@@ -158,17 +158,15 @@
     }
     </script>
     
-    <!-- Google Analytics (replace GA_MEASUREMENT_ID with actual ID) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'GA_MEASUREMENT_ID');
-    </script>
-    
-    <!-- Google Search Console verification -->
-    <meta name="google-site-verification" content="your-verification-code" />
+    <!--
+      Google Analytics is loaded from src/components/SEO/GoogleAnalytics.jsx,
+      driven by the VITE_GA_MEASUREMENT_ID environment variable (set in Vercel).
+      It only loads when that variable is set — nothing to configure here.
+
+      Google Search Console: verify the domain via DNS (recommended) in your
+      domain/Vercel settings, or paste the HTML-tag verification code here as:
+      <meta name="google-site-verification" content="REAL_CODE_HERE" />
+    -->
   </head>
   <body>
     <div id="root"></div>

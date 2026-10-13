@@ -14,19 +14,20 @@ import SEOHead from './components/SEO/SEOHead';
 import GoogleAnalytics from './components/SEO/GoogleAnalytics';
 import PerformanceOptimizer from './components/SEO/PerformanceOptimizer';
 import { OrganizationSchema } from './components/SEO/StructuredData';
+import { GA_MEASUREMENT_ID } from './config/analytics';
 
 // Route change tracker for analytics
 const RouteChangeTracker = () => {
   const location = useLocation();
-  
+
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('config', 'GA_MEASUREMENT_ID', {
+    if (GA_MEASUREMENT_ID && typeof window !== 'undefined' && window.gtag) {
+      window.gtag('config', GA_MEASUREMENT_ID, {
         page_path: location.pathname + location.search,
       });
     }
   }, [location]);
-  
+
   return null;
 };
 
@@ -38,7 +39,7 @@ function App() {
         <SEOHead 
           structuredData={OrganizationSchema()}
         />
-        <GoogleAnalytics measurementId="GA_MEASUREMENT_ID" />
+        <GoogleAnalytics />
         <PerformanceOptimizer />
         <RouteChangeTracker />
         
